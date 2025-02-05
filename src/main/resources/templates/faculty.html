@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" th:href="@{/css/faculty.css}">
+</head>
+<body>
+    <div  th:replace="~{base::parent(~{::.reg})}">
+   <section class="reg"> 
+   <header>Registration form</header>
+   
+   <form action="/savedata"  method="post" class="form">
+   <div class="input-box">
+   <lable for="Full_Name"> Full Name </lable>
+   <input type="text" placeholder="Enter your full name" name="full_Name"> 
+   </div>
+   <div class="input-box">
+   <lable for="Employee_id"> employee_id </lable>
+   <input type="text" placeholder="Enter your Employee id" name="employee_id"> 
+   </div>
+   <div class="input-box">
+   <lable for="Email_id"> Email Id </lable>
+   <input type="text" placeholder="Enter your Email-id" name="emial_id"> 
+   </div>
+   <div class="input-box">
+   <lable for="pass"> Enter Password* </lable>
+   <input type="text" placeholder="Enter the password" name="pass"> 
+   </div>
+   <div class="input-box">
+   <lable for="Confirm_pass"> Confirm Password* </lable>
+   <input type="text" placeholder="Confirm the password" name="confirm_pass"> 
+   </div>
+   <button>submit</button>
+   </form>
+    </section>
+</div>
+    <!-- Link to go back to the home page -->
+    <a href="/">Back to Home Page</a>
+</body>
+</html>

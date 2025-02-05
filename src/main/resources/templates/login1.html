@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+     <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+    <div  th:replace="~{base::parent(~{::.log})}">
+   <div class="log"> 
+   <h2 class="form-title">Log in with</h2>
+   
+   <form action="#" class="login-form">
+   <div class="input-wrapper">
+   <input type="email" placeholder="Email address"
+    class="input-field" required> 
+    <i class="material-symbols-rounded">mail</i>
+    </div>
+   <div class="input-wrapper">
+   <input type="password" placeholder="Password"
+    class="input-field" required> 
+    <i class="material-symbols-rounded">lock</i>
+    </div>
+    <a href="#" class="forgot-pass-link">Forgot password</a>
+    <button> Log in</button>
+    </form>
+    <p class="signup-text">Don't have an account?<a href="#">Signup-text</a> </p>
+   </div>
+    </div>
+
+    <!-- Link to go back to the home page -->
+    <a href="/">Back to Home Page</a>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:fragment="navbar"  >
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive </title>
+   <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <script src="@{js/script.js}"></script>
+    
+</head>
+<body>
+    <nav 
+     class="navbar">
+        <div class="logo">
+        
+        <img th:src="@{/images/jjmcoe.png}" alt="Logo" class="logo-img">
+        
+        </div>
+        <div class="title" >
+        <h5>Dr. J.J. Madgum</h5>
+    <h5>College of Engineering</h5>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="#">Services</a></li>
+             <li class="dropdown">
+                <a href="#" class="dropbtn">Login</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/login}">Administrator</a>
+                    <a href="#">Faculty</a>
+                    <a href="#">Student</a>
+                </div>
+            </li>
+            
+           <!--   <li class="dropdown">
+                <a href="#" class="dropbtn">Registration</a>
+                <div class="dropdown-content">
+                    <a href="administration">Administrator</a>
+                    <a href="/faculty">Faculty</a>
+                    <a href="/student-login">Student</a>
+                </div>
+            </li>-->
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>
+ 

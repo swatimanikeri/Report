@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" 
+th:fragment="parent(content)"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+     
+     
+     
+  </head>
+    <title>My Page</title>
+</head>
+<body>
+
+<div th:replace="~{navbar::navbar}"></div>
+<div th:replace="${content}"></div>
+</body>
+
+</html>

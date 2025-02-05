@@ -1,0 +1,129 @@
+/* Basic styles for the navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color:white;
+    color:blue;
+}
+
+.navbar .logo {
+    font-size: 1.5em;
+    margin-right: 5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px; /* Adds space between the navigation items */
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black; /* Adjust color as needed */
+    font-size: 18px; /* Adjust text size */
+    padding: 5px 10px; /* Adds padding around the text */
+    transition: color 0.3s;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: blue; /* Adjust to match your design */
+    font-size: 18px;
+    padding: 5px 10px; /* Ensures consistent spacing */
+    transition: color 0.3s;
+}
+
+.title{
+	color:rgb(46, 60, 137);
+	display:inline;
+	align-items: left;
+	 margin-right: 800px;
+	 line-height: 0.1px;
+	 
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 5px;
+    background-color: white;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+/* Dropdown Button */
+.nav-links li.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links li.dropdown .dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-links li.dropdown:hover .dropbtn {
+    background-color: #2980b9;
+}
+
+/* Dropdown Content */
+.nav-links li.dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.nav-links li.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.nav-links li.dropdown .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-links li.dropdown .dropdown-content a:hover {
+    background-color: #ddd;
+}
+/* Logo image */
+.logo-img {
+    width: 70px;  /* Set the desired width of the logo */
+    height: auto;  /* Maintain aspect ratio */
+    display: inline;
+}
+

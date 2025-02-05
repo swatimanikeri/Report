@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HomePage - MySite</title>
+     <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+    <div  th:replace="~{base::parent(~{::.imga})}"class="container" >
+    <div id="overlay" class="imga">
+   
+   <div class="container">
+        <div class="content">
+            <h1>Welcome to Department Of Computer Science</h1>
+            <p>Create Annual Report with Ease</p>
+        </div>
+    </div>
+    
+    
+    </div>
+    </div>
+   <footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>Our Departments</h4>
+      <ul>
+        <li><a href="#">Engineering</a></li>
+        <li><a href="#">Marketing</a></li>
+        <li><a href="#">Sales</a></li>
+        <li><a href="#">Human Resources</a></li>
+        <li><a href="#">Customer Support</a></li>
+        <li><a href="#">Finance</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Employee Handbook</a></li>
+        <li><a href="#">Training Programs</a></li>
+        <li><a href="#">Department Policies</a></li>
+        <li><a href="#">Career Opportunities</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Email: <a href="mailto:contact@department.com">contact@department.com</a></li>
+        <li>Phone: <a href="tel:+1234567890">+1 234 567 890</a></li>
+        <li>Address: 123 Department St, City, Country</li>
+        <li><a href="#">Support Ticket</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <ul class="social-links">
+        <li><a href="#"><img src="#" alt="Facebook"> Facebook</a></li>
+        <li><a href="#"><img src="#" alt="Twitter"> Twitter</a></li>
+        <li><a href="#"><img src="#" alt="LinkedIn"> LinkedIn</a></li>
+        <li><a href="#"><img src="#" alt="Instagram"> Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Department Name. All rights reserved.</p>
+  </div>
+</footer>
+
+
+    <a href="/">Back to Home Page</a>
+</body>
+</html>
