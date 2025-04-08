@@ -1,0 +1,24 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="mainreport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="feb7772e-f64a-4386-bbb9-3785cbb72122">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="compesaReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="compesaMap" class="java.util.Map"/>
+	<parameter name="SUBREPORT_DATASOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<query language="sql"><![CDATA[]]></query>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch"/>
+	<detail>
+		<band height="619" splitType="Stretch">
+			<element kind="subreport" uuid="042c18fb-a271-487e-9995-734c1ec2568f" x="0" y="0" width="530" height="619">
+				<parametersMapExpression><![CDATA[$P{compesaMap}]]></parametersMapExpression>
+				<expression><![CDATA[$P{compesaReport}]]></expression>
+				<parameter name="compesaReport">
+					<expression><![CDATA[$P{compesaReport}]]></expression>
+				</parameter>
+				<parameter name="compesaMap">
+					<expression><![CDATA[$P{compesaMap}]]></expression>
+				</parameter>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"  th:fragment="footer">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer - MySite</title>
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+      <div class="footer-container">
+        <!-- Department Info -->
+        <div class="footer-column">
+          <h4>Department of Computer Science</h4>
+          <p>Dr. J.J. Magdum College of Engineering, Jaysingpur
+             Gat No. (314/330),
+             Shirol – Wadi Road, (Agar Bhag),</p>
+          <p>Email: <a href="mailto:principal@jjmcoe.ac.in">principal@jjmcoe.ac.in</a></p>
+          <p>Phone: <a href="tel:(02322)-221123">(02322)-221123</a></p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/faculty">Faculty</a></li>
+            <li><a href="/research">Research</a></li>
+            <li><a href="/resources">Student Resources</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="https://www.facebook.com/jjmcoejsp/?_rdr"><img src="data:image/png;base64,..." class="face" alt="Facebook"> Facebook</a></li>
+            <li><a href="#"><img src="#" alt="LinkedIn"> LinkedIn</a></li>
+            <li><a href="#"><img src="#" alt="GitHub"> GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Section -->
+      <div class="footer-bottom">
+        <p>© 2025 Department of Computer Science. All rights reserved.</p>
+        <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/terms">Terms of Use</a></p>
+      </div>
+    </footer>
+
+</body>
+</html>

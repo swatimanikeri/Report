@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/Community.css}">
+</head>
+<body>
+<div th:replace="~{base::parent(~{::p})}">
+        <p></p>
+    </div>
+    <h3>Industrial Visit</h3>
+<form action="saveInd" method="POST" enctype="multipart/form-data">
+    <b><label>Industry name:<input type="text" id="industrynm" name="industrynm" placeholder="Name" required></label><br><br><br></b>
+    <b><label>Date:<input type="date" id="date" name="date" placeholder="Date" required></label><br><br><br></b>
+    <b><label>Target Audience:<input type="text" id="audience" name="audience" placeholder="Name" required></label><br><br><br></b>
+    <b><label>Name Of Faculty:<input type="text" id="facultynm" name="facultynm" placeholder="Name" required></label><br><br><br></b>
+    
+    <label for="imageData">Image:</label>
+    <input type="file" id="imageData" name="imageData" required><br><br>
+     <label for="image2">Image:</label>
+            <input type="file" id="image2" name="image2" required><br><br>
+    
+    <button type="submit">Submit</button>
+</form>
+ <a href="/ViewIndustrialVisit" class="swati">
+            <button>fetch data</button>
+        </a>
+</body>
+</html>

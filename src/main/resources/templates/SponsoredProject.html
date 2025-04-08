@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sponsored project Form</title>
+    
+     <link rel="stylesheet" th:href="@{/css/Community.css}">
+</head>
+<body>
+
+     <div th:replace="~{base::parent(~{::p})}">
+        <p></p>
+    </div>
+    <h3>Sponsored  Project</h3>
+        <!-- Dynamic content for the Community Service Form will go here -->
+        <form action="/saveSpon" method="POST" enctype="multipart/form-data">
+            <b><label>RollNo: <input type="text" id="rollno" name="rollno" placeholder="Roll No" required></label><br><br><br></b>
+            <b><label> Student Name: <input type="text" id="studentname" name="studentname" placeholder="Name" required></label><br><br><br></b>
+            <b><label>Guide: <input type="text" id="date" name="guide" placeholder="Guide" required></label><br><br><br></b>
+            <b><label>Project Name: <input type="text" id="projectnm" name="projectnm" placeholder="Project Name" required></label><br><br><br></b>
+            <b><label>Sponsored Company Details: <input type="text" id="companydetails" name="companydetails" placeholder="Company Details" required></label><br><br><br></b>
+            
+            <label for="image1">Image1:</label>
+            <input type="file" id="image1" name="image1" required><br><br>
+            <label for="image2">Image2:</label>
+            <input type="file" id="image2" name="image2" required><br><br>
+            
+            <button type="submit">Submit</button>
+           
+        </form>
+        <a href="/ViewSponsored" class="swati">
+            <button>fetch data</button>
+        </a>
+    
+</body>
+</html>

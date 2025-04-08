@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>About - MySite</title>
+    <link rel="stylesheet" th:href="@{/css/activity.css}">
+</head>
+<body>
+   <div th:replace="~{navbar::navbar}"></div>
+
+    <div class="container">
+        <!-- Generating 15 buttons with links -->
+        <a href="/ExpLec" class="button-link">
+            <button>Expert Lecture</button>
+        </a>
+        <a href="/AlumniContribution" class="button-link">
+            <button>Alumini Contribution</button>
+        </a>
+        <a href="/Valueadd" class="button-link">
+            <button>Value Added Program</button>
+        </a>
+        <a href="/" class="button-link">
+            <button>Workshop Organised</button>
+        </a>
+        <a href="/StudentPapar" class="button-link">
+            <button>Paper Publication By Students</button>
+        </a>
+         <a href="/FacultyPapar" class="button-link">
+            <button>Paper Publication By Faculty</button>
+        </a>
+        <a href="/SponsoredProject" class="button-link">
+            <button>Sponsored Projects</button>
+        </a>
+        <a href="/compesaCsi" class="button-link">
+            <button>Compesa & CSI Activities</button>
+        </a>
+<a href="/mou" class="button-link">
+    <button>MOU</button>
+</a>
+        <a href="/IndustrialVisit" class="button-link">
+            <button>Student Industrial Visit</button>
+        </a>
+        <a href="/Community" class="button-link">
+            <button>Community Service</button>
+        </a>
+        <a href="/TecnicalEvent" class="button-link">
+            <button>Technical Event Participation</button>
+        </a>
+        <a href="/" class="button-link">
+            <button>Faculty Interaction with Outside World</button>
+        </a>
+        <a href="/" class="button-link">
+            <button>Internship</button>
+        </a>
+        <a href="/" class="button-link">
+            <button>Placement Details</button>
+      
+    </div>
+    
+  <div th:replace="~{footer::footer}"></div>
+
+    <!-- Link to go back to the home page -->
+    <a href="/">Back to Home Page</a>
+</body>
+</html>

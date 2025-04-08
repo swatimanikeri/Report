@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/Community.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOU Page</title>
+    <script>
+        function addDynamicField() {
+            const container = document.getElementById('dynamicFieldsContainer');
+            const fieldDiv = document.createElement('div');
+            fieldDiv.innerHTML = `
+                <label>Field Name: <input type="text" name="dynamicFieldName" placeholder="Field Name" required></label>
+                <label>Field Value: <input type="text" name="dynamicFieldValue" placeholder="Field Value" required></label>
+                <button type="button" onclick="removeField(this)">Remove</button>
+                <br>
+            `;
+            container.appendChild(fieldDiv);
+        }
+
+        function removeField(button) {
+            button.parentElement.remove();
+        }
+
+        function collectDynamicFields() {
+            const fields = document.querySelectorAll('#dynamicFieldsContainer div');
+            const dynamicData = {};
+            fields.forEach(field => {
+                const fieldName = field.querySelector('[name="dynamicFieldName"]').value;
+                const fieldValue = field.querySelector('[name="dynamicFieldValue"]').value;
+                dynamicData[fieldName] = fieldValue;
+            });
+            const hiddenInput = document.getElementById('dynamicFields');
+            hiddenInput.value = JSON.stringify(dynamicData);
+        }
+    </script>
+</head>
+<body>
+
+    <h3>MOU Form</h3>
+    <form action="/saveMou" method="POST" enctype="multipart/form-data" onsubmit="collectDynamicFields()">
+        <label>Organization Name: <input type="text" name="orgnm" required></label><br>
+        <label>Activity Details: <input type="text" name="activitydetails" required></label><br>
+        <label>Image 1: <input type="file" name="image1" required></label><br>
+        <label>Image 2: <input type="file" name="image2" required></label><br>
+        
+        <div id="dynamicFieldsContainer"></div>
+        <input type="hidden" name="dynamicFields" id="dynamicFields">
+        <button type="button" onclick="addDynamicField()">Add Field</button><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/viewMou">Fetch Data</a>
+</body>
+</html>

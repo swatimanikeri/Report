@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View the Compesa & Csi data here</title>
+    <link rel="stylesheet" th:href="@{/css/fetchdata.css}">
+</head>
+<body>
+    <h2>View the Compesa & Csi data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Activities</th>
+                <th>Image1</th>
+                <th>Image2</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rep : ${formDataList}">
+                <td th:text="${rep.dates}"></td>
+                <td th:text="${rep.activities}"></td>
+                <td>
+                    <img th:src="|data:image/jpeg;base64,${rep.generateBase64Image1()}|" alt="image1" width="100%" height="100%">
+                </td>
+                <td>
+                    <img th:src="|data:image/jpeg;base64,${rep.generateBase64Image2()}|" alt="image2" width="50%" height="50%">
+                </td>
+                <td>
+                    <form th:action="@{'/compesa/delete/' + ${rep.id}}" method="POST">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this record?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

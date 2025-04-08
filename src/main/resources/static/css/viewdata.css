@@ -1,0 +1,87 @@
+/* Reset default body margins and padding */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Background remains white */
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling the container to center the content */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Button styling */
+button {
+    padding: 15px;
+    font-size: 16px;
+    background-color: grey; /* Changed button color to green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+/* Link styling for buttons */
+.button-link {
+    text-decoration: none;
+    display: block;
+}
+
+/* Back to Home Page link */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Link hover effect */
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Styling paragraph text */
+p {
+    font-size: 18px;
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* 2-column layout */
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
+}

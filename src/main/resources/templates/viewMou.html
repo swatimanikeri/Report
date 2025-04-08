@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View the MOU data here</title>
+    <link rel="stylesheet" th:href="@{/css/fetchdata.css}">
+    <script th:inline="javascript">
+        function parseJsonFields(jsonData) {
+            try {
+                const fields = JSON.parse(jsonData);
+                let fieldHtml = '';
+                for (const [key, value] of Object.entries(fields)) {
+                    fieldHtml += `<tr><td>${key}</td><td>${value}</td></tr>`;  // Displaying both key and value
+                }
+                return fieldHtml;
+            } catch (e) {
+                return '<tr><td colspan="2">Invalid JSON data</td></tr>';
+            }
+        }
+
+        function renderDynamicFields() {
+            const dynamicFieldElements = document.querySelectorAll('.dynamic-fields');
+            dynamicFieldElements.forEach(element => {
+                const jsonData = element.getAttribute('data-json');
+                element.innerHTML = parseJsonFields(jsonData);
+            });
+        }
+
+        window.onload = renderDynamicFields;
+    </script>
+</head>
+<body>
+    <h2>View the MOU data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Organization Name</th>
+                <th>Activity Details</th>
+                <th>Image1</th>
+                <th>Image2</th>
+                <th>Additional Details</th> <!-- Fixed column name -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over formDataList and display each entry -->
+            <tr th:each="rep : ${formDataList}">
+                <td th:text="${rep.orgnm}"></td>
+                <td th:text="${rep.activitydetails}"></td>
+                <td>
+                    <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image()}}" alt="image1" width="100%" height="100%">
+                </td>
+                <td>
+                    <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image2()}}" alt="image2" width="100%" height="100%">
+                </td>
+                <td>
+                    <!-- Dynamic Fields -->
+                    <table class="dynamic-fields" th:attr="data-json=${rep.dynamicFieldsJson}"></table>
+                </td>
+                <td>
+                    <!-- Delete Button -->
+                    <form th:action="@{/mou/delete/{id}(id=${rep.sr_No})}" method="POST">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this record?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- In Community.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alumni Contribution Form</title>
+    
+     <link rel="stylesheet" th:href="@{/css/Community.css}">
+</head>
+<body>
+
+    <div th:replace="~{navbar::navbar}"></div>
+    <h3>Community Service</h3>
+        <!-- Dynamic content for the Community Service Form will go here -->
+        <form action="/saveAlumni" method="POST" enctype="multipart/form-data">
+            <b><label>Topic: <input type="text" id="Topic" name="Topic" placeholder="Topic" required></label><br><br><br></b>
+            <b><label>Date: <input type="date" id="date" name="date" placeholder="Date" required></label><br><br><br></b>
+            <b><label>Name of resource person: <input type="text" id="resourceperson" name="resourceperson" placeholder="Resource Person" required></label><br><br><br></b>
+            <b><label>Target Audience: <input type="text" id="audience" name="audience" placeholder="Audience" required></label><br><br><br></b>
+            
+            <label for="image1">Image1:</label>
+            <input type="file" id="image1" name="image1" required><br><br>
+             <label for="image2">Image2:</label>
+            <input type="file" id="image2" name="image2" required><br><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+         
+        <a href="/CommunityView" class="swati">
+            <button>fetch data</button>
+        </a>
+       <div th:replace="~{footer::footer}"></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/Community.css}">
+</head>
+<body>
+<div th:replace="~{base::parent(~{::p})}">
+        <p></p>
+    </div>
+    <h3>COMPESA & CST</h3>
+    <form action="saveComp" method="POST" enctype="multipart/form-data">
+        
+         <b><label>Date:<input type ='date' id ='dates' name ='dates'placeholder='Date' required></label><br><br><br></b>
+        <b><label>Activity:<input type ='text' id ='activities' name ='activities'placeholder='Name' required></label><br><br><br></b>
+       <label for="image1">Image:</label>
+        <input type="file" id="image1" name="image1" required><br><br>
+         <label for="image2">Image:</label>
+            <input type="file" id="image2" name="image2" required><br><br>
+       <button type="submit">Submit</button>
+        </form>
+         <a href="/viewCompesa" class="swati">
+            <button>fetch data</button>
+        </a>
+</body>
+</html>
