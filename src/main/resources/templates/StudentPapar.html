@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,14 +7,35 @@
 <link rel="stylesheet" th:href="@{/css/Community.css}">
 </head>
 <body>
-
-    <h3>Student  Papar publication details</h3>
-<form action="saveStudent" method="POST" enctype="multipart/form-data">
+ <div th:replace="~{navbar::navbar}"></div>
+    <h3 style="text-align: center;">Student  Papar publication details</h3>
+<form action="saveStudent" method="POST" enctype="multipart/form-data" onsubmit="collectDynamicFields()">
     <b><label>Group Number<input type="number" id="groupno" name="groupno" placeholder="student name" required></label><br><br><br></b>
     <b><label>Roll No:<input type="number" id="rollno" name="rollno" placeholder="student rollno" required></label><br><br><br></b>
     <b><label>Name of Student:<input type="text" id="studentname" name="studentname" placeholder="studentname" required></label><br><br><br></b>
       <b><label>Topic Name:<input type="text" id="status" name="status" placeholder="status" required></label><br><br><br></b>
         <b><label>Papar Details:<input type="text" id="paperdetails" name="paperdetails" placeholder="paperdetails" required></label><br><br><br></b>
+     <div id="extraDynamicFields"></div>
+        
+       <div id="staticFieldContainer">
+        <!-- Render dynamic fields saved previously -->
+        <div th:if="${dynamicJson != null}" th:each="entry : ${dynamicJson}">
+        <label th:text="${entry.key + ':'}"></label>
+        <input type="text"
+               th:name="'dynamicFields[' + ${entry.key} + ']'" 
+               th:value="${entry.value}" />
+       </div>
+    </div>
+
+        
+        <div id="dynamicFieldsContainer"></div>
+        <input type="hidden" name="dynamicFields" id="dynamicFields">
+        <button type="button" onclick="addDynamicField()">Add Field</button><br><br>
+      
+        <label for="image1">Image1:</label>
+        <input type="file" id="image1" name="image1" required><br><br>
+        <label for="image2">Image2:</label>
+        <input type="file" id="image2" name="image2" required><br><br>
     
     
     <label for="image1">Image1:</label>
@@ -27,8 +45,17 @@
     
     <button type="submit">Submit</button>
 </form>
- <a href="/ViewTechnical" class="swati">
-            <button>fetch data</button>
+     <a href="/ViewTechnical" class="swati">
+            <button>View Previous data/button>
         </a>
+        
+        <!-- Logout Button (Using POST for CSRF protection) -->
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout_button">Logout</button>
+        </form>
+        <script th:src="@{/js/script.js}"></script>
+   
+    
 </body>
+ <div th:replace="~{footer::footer}"></div>
 </html>

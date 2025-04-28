@@ -1,24 +1,38 @@
-<!-- In Community.html -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Community Service Form</title>
-    
-     <link rel="stylesheet" th:href="@{/css/Community.css}">
+    <title>Expert lecture Form</title>
+    <link rel="stylesheet" th:href="@{/css/Community.css}">
 </head>
 <body>
 
     <div th:replace="~{navbar::navbar}"></div>
-    <h3>Expert Lecture</h3>
+    <h3 style="text-align: center;">Expert Lecture</h3>
         <!-- Dynamic content for the Community Service Form will go here -->
-        <form action="/saveExp" method="POST" enctype="multipart/form-data">
-            <b><label>TopicName <input type="text" id="TopicName" name="TopicName" placeholder="TopicName" required></label><br><br><br></b>
+        <form action="/saveExp" method="POST" enctype="multipart/form-data" onsubmit="collectDynamicFields()">
+            <b><label>TopicName <input type="text" id="topicname" name="topicname" placeholder="TopicName" required></label><br><br><br></b>
             <b><label>Date: <input type="date" id="date" name="date" placeholder="Date" required></label><br><br><br></b>
-            <b><label>Name of resource person: <input type="text" id="resourseperson" name="resourseperson" placeholder="Resource Person" required></label><br><br><br></b>
+            <b><label>Name of resource person: <input type="text" id="resourceperson" name="resourceperson" placeholder="Resource Person" required></label><br><br><br></b>
             <b><label>Target Audience: <input type="text" id="audience" name="audience" placeholder="Audience" required></label><br><br><br></b>
             
+             <div id="extraDynamicFields"></div>
+        
+       <div id="staticFieldContainer">
+        <!-- Render dynamic fields saved previously -->
+        <div th:if="${dynamicJson != null}" th:each="entry : ${dynamicJson}">
+        <label th:text="${entry.key + ':'}"></label>
+        <input type="text"
+               th:name="'dynamicFields[' + ${entry.key} + ']'" 
+               th:value="${entry.value}" />
+       </div>
+    </div>
+
+        
+        <div id="dynamicFieldsContainer"></div>
+        <input type="hidden" name="dynamicFields" id="dynamicFields">
+        <button type="button" onclick="addDynamicField()">Add Field</button><br><br>
             <label for="image1">Image1:</label>
             <input type="file" id="image1" name="image1" required><br><br>
              <label for="image2">Image2:</label>
@@ -28,8 +42,17 @@
         </form>
          
         <a href="/ExpLecViewdata" class="swati">
-            <button>fetch data</button>
+            <button>Fetch Data</button>
         </a>
-       <div th:replace="~{footer::footer}"></div>
+        
+        <!-- Logout Button (Using POST for CSRF protection) -->
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout_button">Logout</button>
+        </form>
+            <script th:src="@{/js/script.js}"></script>
+        
+<span th:text="${#authentication.name}">User</span>
+
 </body>
+<div th:replace="~{footer::footer}"></div>
 </html>

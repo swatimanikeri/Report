@@ -5,11 +5,14 @@ import java.util.Arrays;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "sponsored_project")
 public class SponsoredProjectModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
@@ -18,7 +21,16 @@ public class SponsoredProjectModel {
 	private String studentname;
 	private String guide;
 	private String projectnm;
+	@Column(columnDefinition = "TEXT")
+	private String dynamicFieldsJson;
+
 	
+	public String getDynamicFieldsJson() {
+		return dynamicFieldsJson;
+	}
+	public void setDynamicFieldsJson(String dynamicFieldsJson) {
+		this.dynamicFieldsJson = dynamicFieldsJson;
+	}
 	@Column(name = "companydetails") 
 	private String companydetails;
 	@Lob
@@ -81,14 +93,9 @@ public class SponsoredProjectModel {
 	@Override
 	public String toString() {
 		return "SponsoredProjectModel [sr_No=" + sr_No + ", rollno=" + rollno + ", studentname=" + studentname
-				+ ", guide=" + guide + ", projectnm=" + projectnm + ", companydetails=" + companydetails + ", image1="
-				+ Arrays.toString(image1) + ", image2=" + Arrays.toString(image2) + ", generateBase64Image1()="
-				+ generateBase64Image1() + ", generateBase64Image2()=" + generateBase64Image2() + ", getSr_No()="
-				+ getSr_No() + ", getRollno()=" + getRollno() + ", getStudentname()=" + getStudentname()
-				+ ", getGuide()=" + getGuide() + ", getProjectnm()=" + getProjectnm() + ", getCompanydetails()="
-				+ getCompanydetails() + ", getImage1()=" + Arrays.toString(getImage1()) + ", getImage2()="
-				+ Arrays.toString(getImage2()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", guide=" + guide + ", projectnm=" + projectnm + ", dynamicFieldsJson=" + dynamicFieldsJson
+				+ ", companydetails=" + companydetails + ", image1=" + Arrays.toString(image1) + ", image2="
+				+ Arrays.toString(image2) + "]";
 	}
 	public SponsoredProjectModel(Integer sr_No, Integer rollno, String studentname, String guide, String projectnm,
 			String companydetails, byte[] image1, byte[] image2) {

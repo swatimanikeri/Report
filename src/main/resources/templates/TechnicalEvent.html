@@ -6,16 +6,34 @@
 <link rel="stylesheet" th:href="@{/css/Community.css}">
 </head>
 <body>
-<div th:replace="~{base::parent(~{::p})}">
-        <p></p>
-    </div>
-    <h3>Technical Event Participation</h3>
-<form action="saveTech" method="POST" enctype="multipart/form-data">
+ <div th:replace="~{navbar::navbar}"></div>
+    <h3 style="text-align: center;">Technical Event Participation</h3>
+<form action="saveTech" th:action="@{/login}" method="POST" enctype="multipart/form-data" onsubmit="collectDynamicFields()">
     <b><label>Student name:<input type="text" id="studentname" name="studentname" placeholder="student name" required></label><br><br><br></b>
     <b><label>Student Event:<input type="text" id="studentevent" name="event" placeholder="student event" required></label><br><br><br></b>
     <b><label>Date:<input type="date" id="date" name="date" placeholder="date" required></label><br><br><br></b>
     <b><label>Organized by:<input type="text" id="organisedby" name="organisedby" placeholder="organized by" required></label><br><br><br></b>
      <b><label>Status:<input type="text" id="status" name="status" placeholder="status" required></label><br><br><br></b>
+     
+     
+       <div id="extraDynamicFields"></div>
+        
+       <div id="staticFieldContainer">
+        <!-- Render dynamic fields saved previously -->
+        <div th:if="${dynamicJson != null}" th:each="entry : ${dynamicJson}">
+        <label th:text="${entry.key + ':'}"></label>
+        <input type="text"
+               th:name="'dynamicFields[' + ${entry.key} + ']'" 
+               th:value="${entry.value}" />
+       </div>
+    </div>
+
+        
+        <div id="dynamicFieldsContainer"></div>
+        <input type="hidden" name="dynamicFields" id="dynamicFields">
+        <button type="button" onclick="addDynamicField()">Add Field</button><br><br>
+        
+        
     <label for="image1">Image1:</label>
     <input type="file" id="image1" name="image1" required><br><br>
      <label for="image2">Image2:</label>
@@ -24,7 +42,17 @@
     <button type="submit">Submit</button>
 </form>
  <a href="/ViewTechnical" class="swati">
-            <button>fetch data</button>
+            <button>View Previous data</button>
         </a>
+        
+        <!-- Logout Button (Using POST for CSRF protection) -->
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout_button">Logout</button>
+        </form>
+        
+    <script th:src="@{/js/script.js}"></script>
+   
+    
 </body>
+ <div th:replace="~{footer::footer}"></div>
 </html>

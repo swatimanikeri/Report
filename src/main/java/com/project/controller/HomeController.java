@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    
 
     @GetMapping("/registration") // Handles /registration page
     public String registration() {
@@ -18,7 +17,11 @@ public class HomeController {
     public String eventsActivities() {
         return "eventsActivities"; // This loads events-activities.html
     }
-   
+    @GetMapping("/reportG") // Handles /registration page
+    public String report() {
+        return "reportG"; // This loads registration.html
+    }
+
     
     @GetMapping("/viewdata") // Handles Events & Activities page
     public String viewdata() {

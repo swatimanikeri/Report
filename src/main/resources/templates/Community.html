@@ -30,6 +30,10 @@
         <a href="/CommunityView" class="swati">
             <button>fetch data</button>
         </a>
+        <!-- Logout Button (Using POST for CSRF protection) -->
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout_button">Logout</button>
+        </form>
        <div th:replace="~{footer::footer}"></div>
 </body>
 </html>

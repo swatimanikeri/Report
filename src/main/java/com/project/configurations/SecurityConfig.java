@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -19,7 +20,7 @@ public class SecurityConfig {
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	        http
 	            .authorizeHttpRequests(auth -> auth
-	                .requestMatchers("/", "/home", "/css/**", "/js/**", "/images/**","/about","/eventsActivities,/report{html}").permitAll() // Allow access to home page without login
+	            		.requestMatchers("/", "/home", "/css/**", "/js/**", "/images/**", "/about", "/eventsActivities","/reportG","/report.html","dashboard","/jasperpdf/export").permitAll()
 
 	                .requestMatchers("/mou").hasRole("MOU")
 	                .requestMatchers("/SponsoredProject").hasRole("SPON")
@@ -27,20 +28,36 @@ public class SecurityConfig {
 	                .requestMatchers("/IndustrialVisit").hasRole("IND")
 	                .requestMatchers("/compesaCsi").hasRole("COMP")
 	                .requestMatchers("/Community").hasRole("COMM")
+	                .requestMatchers("/ExpLec").hasRole("EXP")
+	                .requestMatchers("/AlumniContribution").hasRole("ALUMNI")
+	                .requestMatchers("/jasperpdf/export").hasRole("JASPER")
+	                .requestMatchers("/").hasRole("STUDENT")
+	                .requestMatchers("/").hasRole("FACULTY")
+	                
+	                .requestMatchers("/").hasRole("VALUE")
+	                
+	                
 	               // Restrict access to admin pages
 	                .anyRequest().authenticated() // All other requests require authentication
 	            )
 	            .formLogin()
 	            .and()
 	            .logout(logout -> logout
-	                    .logoutUrl("/logout")
-	                     .logoutSuccessUrl("/login?logout") // Redirect to home page after logout
+//	                    .logoutUrl("/logout")
+	                     .logoutSuccessUrl("/login?logout")
+	                     .invalidateHttpSession(true) // Invalidate session on logout
+	                     .deleteCookies("JSESSIONID") // Redirect to home page after logout
 	                      .permitAll()
 	                      )
 	            .csrf(csrf -> csrf.disable());
 	        return http.build();
 	    }
-	 
+	  @Bean
+	    public StrictHttpFirewall strictHttpFirewall() {
+	        StrictHttpFirewall firewall = new StrictHttpFirewall();
+	        firewall.setAllowSemicolon(true);  // Allow semicolon in URLs
+	        return firewall;
+	    }
 	    @Bean
 	    public UserDetailsService  userDetailsService() {
 	        UserDetails mou = User.withDefaultPasswordEncoder()
@@ -75,7 +92,44 @@ public class SecurityConfig {
 	                .password("comm123")
 	                .roles("COMM")
 	                .build();
+	        
+	        UserDetails expuser= User.withDefaultPasswordEncoder()
+	                .username("exp")
+	                .password("exp123")
+	                .roles("EXP")
+	                .build();
+	        
+	        UserDetails alumniuser= User.withDefaultPasswordEncoder()
+	                .username("alumni")
+	                .password("alumni123")
+	                .roles("ALUMNI")
+	                .build();
+	        UserDetails jasparuser= User.withDefaultPasswordEncoder()
+	                .username("jaspar")
+	                .password("jaspar123")
+	                .roles("FACULTY")
+	                .build();
+	        
+	        UserDetails facuser= User.withDefaultPasswordEncoder()
+	                .username("fac")
+	                .password("fac123")
+	                .roles("FACULTY")
+	                .build();
+	        
+	     
+	        
+	        UserDetails stuuser= User.withDefaultPasswordEncoder()
+	                .username("stu")
+	                .password("stu123")
+	                .roles("STUDENT")
+	                .build();
+	        
+	        UserDetails valuser= User.withDefaultPasswordEncoder()
+	                .username("val")
+	                .password("val123")
+	                .roles("VALUE")
+	                .build();
 
-	        return new InMemoryUserDetailsManager(mou,sponuser,techuser,induuser,compuser,commuser);
+	        return new InMemoryUserDetailsManager(mou,sponuser,techuser,induuser,compuser,commuser,expuser,alumniuser,jasparuser,facuser,stuuser,valuser);
 	    }
 }

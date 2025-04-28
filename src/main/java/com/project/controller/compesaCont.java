@@ -1,9 +1,13 @@
 package com.project.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,18 +29,21 @@ public class compesaCont {
 
     // Display the form
 	@GetMapping("/compesaCsi")
-    public String CompesaPage(Authentication authcomp) {
+	public String showSponsoredForm(Model model) {
+	    Map<String, String> dynamicFields = compesaSer.loadDynamicFieldNamesOnly(); // use your bean here
+	    model.addAttribute("dynamicJson", dynamicFields);
         return "compesaCsi";
     }
 
     // Handle form submission (text + image)
     @PostMapping("/saveComp")
-    public String submitForm(@RequestParam("dates") String dates,
+    public String submitForm(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
 				            @RequestParam("activities") String activities,
+				            @RequestParam("dynamicFields") String dynamicFieldsJson,
 				            @RequestParam("image1") MultipartFile image1,
     @RequestParam("image2") MultipartFile image2)throws IOException {
-				System.out.println(dates);
-				compesaSer.savelogic( dates,activities,image1,image2);
+				System.out.println(date);
+				compesaSer.savelogic( date,activities,dynamicFieldsJson,image1,image2);
 				return "redirect:/compesaCsi";
 				}
                              

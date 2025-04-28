@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Community Service Data</title>
+    <link rel="stylesheet" th:href="@{/css/fetchdata.css}">
+</head>
+<body>
+<h2>Community Service Activities</h2>
+<table border="1">
+    <thead>
+    <tr id="dynamicHeaderRow">
+        <th>Name of Workshop</th>
+        <th>No of participants</th>
+         <th>Date Conducted</th>
+        <th>Image 1</th>
+        <th>Image 2</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rep : ${formDataList}"th:attr="data-json=${rep.dynamicFieldsJson}"
+                class="data-row">
+        <td th:text="${rep.name_of_Workshop}"></td>
+        <td th:text="${rep.no_of_participents}"></td>
+        <td th:text="${rep.date_conducted}"></td>
+            <td class="dynamic-fields-placeholder" colspan="1"></td>
+        <td>
+            <img th:src="@{'data:image/jpeg;base64,' + ${rep.generateBase64Image1()}}" alt="image1" width="50%" height="50%">
+        </td>
+        <td>
+            <img th:src="@{'data:image/jpeg;base64,' + ${rep.generateBase64Image2()}}" alt="image2" width="50%" height="50%">
+        </td>
+        <td>
+            <form th:action="@{/workshop/delete/{id}(id=${rep.sr_no})}" method="post">
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this record?');">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+ <script th:src="@{/js/script1.js}"></script>
+</body>
+</html>

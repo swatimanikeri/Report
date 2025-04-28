@@ -1,33 +1,501 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>HomePage - MySite</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    
+    .zigzag-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #FFF8F8;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  max-width: 4000px;
+}
+.caption-area {
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.caption-title {
+  font-family: 'Special Gothic Expanded One', sans-serif;
+  font-size: 22px;
+  color: #4e008e;
+  margin-bottom: 5px;
+}
+
+.caption-desc {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+
+.caption-button {
+  background-color: #4e008e;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.caption-button:hover {
+  background-color: #5f00aa;
+}
+
+
+.slideshow-row {
+  width: 900px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.slideshow-row:nth-child(even) {
+  align-self: flex-end;
+  background: #f0f0ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.slideshow-container {
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: 30px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0.95;
+}
+
+.slide img:hover {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+.caption {
+  text-align: center;
+  font-size: 18px;
+  color: #4e008e;
+  margin-top: 10px;
+  font-family: 'Special Gothic Expanded One', sans-serif;
+}
+    
+    
+    body { font-family: Verdana, sans-serif; margin: 40px; }
+    .zigzag-wrapper {
+      display: flex;
+      flex-direction: column;
+      background:#FFF8F8;
+      gap: 40px;
+      align-items: flex-start;
+      margin-Bottom: 30px;
+      max-width: 4000px;
+    }
+
+    #welcome {
+      border-radius:6px;
+      flex-direction: column;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin:5px;
+      height:300px;
+      width:800px;
+    }
+    .wcl1{
+     display: flex;
+     font-size: 80px;
+        line-height: 80px;
+        font-family: "Source Sans 3", "Adjusted Arial Fallback", sans-serif;
+        font-weight: 900;
+        color: #ffff;
+    }
+   .wlc2{
+    display: flex;
+    
+    font-size: 20px;
+        font-weight: 900;
+        color: #ffff;
+        margin-bottom: 30px;
+   }
+    .slider1 { margin-top:5px; }
+
+    #image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      height: 200px;
+      width: 500px;
+    }
+
+    .logo-im {
+      width: 400px;
+      height: auto;
+    }
+
+    @media (min-width: 1024px) {
+      #main {
+        background: white;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #main .main-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+        padding: 40px;
+        gap: 40px;
+      }
+
+      #main .text-section {
+        flex: 1;
+        height:500px
+      }
+
+      .main-heading {
+        font-size: 100px;
+        line-height: 80px;
+        font-family: "Source Sans 3", "Adjusted Arial Fallback", sans-serif;
+        font-weight: 900;
+        color: #2b004e;
+        
+      }
+
+      .sub-heading {
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 15px;
+      }
+
+      .primary-btn {
+        background-color: #005aff;
+        color: white;
+        font-weight: bold;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .secondary-btn {
+        background-color: transparent;
+        color: #005aff;
+        border: 2px solid #005aff;
+        font-weight: bold;
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #main .image-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #main .logo-im {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+      }
+    }
+
+    .slideshow-row {
+      width: 900px;
+    }
+
+    .zigzag-wrapper .slideshow-row:nth-child(even) {
+      align-self: flex-end;
+    }
+
+    .slideshow-row {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    #container {
+      width: 600px;
+      font-weight: 400;
+      color: white;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      margin-left: 30px;
+      margin-right: 30px;
+      
+      border: 2px solid white;
+      border-radius: 20px;
+      
+    }
+
+    .slider {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .right-align {
+      justify-content: flex-end;
+    }
+
+    #slider12 {
+      height: 800px;
+      width: 1600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #tommy {
+      height: 750px;
+      width: 1400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .heading {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .slider h1, .slider h2 {
+      margin: 10px;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .heading h1, .heading h2 {
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+  </style>
 </head>
 <body>
-<div th:replace="~{base::parent(~{::.imga})}" class="container">
-    <div id="overlay" class="imga">
-        <div class="container">
-            <div class="content">
-            <div id="heading"> <h1>
-        <span id="dynamic-text">Welcome to Department</span><br/>
-        <span> of Computer Science</span>
-    </h1>
-            </div>
-              
-                <div class="zigzag">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+  <div th:replace="~{navbar::navbar}"></div>
 
-            </div>
+  <div class="slideshow-row">
+    <div class="slideshow-container" id="tommy">
+      <div class="slider" id="slider12">
+        <div class="slide">
         </div>
+
+        <div class="slide" id="main">
+          <div class="main-content">
+            <div class="text-section">
+              <h1 class="main-heading">EduReportHub Portal</h1>
+              <h3 class="sub-heading">Create Annual Report with ease</h3>
+              <div class="button-group">
+                <button class="primary-btn">Start Free Trial</button>
+                <button class="secondary-btn">Explore Features</button>
+              </div>
+            </div>
+            <div class="image-section">
+              <img th:src="@{/images/smallpdf.png}" alt="Logo" class="logo-im" />
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" id="welcome" >
+          <h1 class="wlc1">Welcome To Department</h1>
+          <h2 class="wlc2">Computer Science</h2>
+        </div>
+
+      </div>
     </div>
+  </div>
+
+ <div class="zigzag-wrapper">
+  <!-- slider1 section -->
+<div class="slideshow-row">
+  <div class="zigzag-wrapper">
+    <div class="slideshow-container" id="container">
+      <div class="slider" id="slider1">
+        <div class="slide"><img th:src="@{/images/Picture11.jpg}" alt="1" /></div>
+        <div class="slide"><img th:src="@{/images/Picture22.jpeg}" alt="2" /></div>
+      </div>
+    </div>
+
+    <div class="caption-area">
+      <div class="icon">🎉</div>
+      <div class="caption-title">Lamp Lighting Ceremony on Teacher's Day</div>
+      <p class="caption-desc">
+        A beautiful ceremony marking the celebration of Teacher's Day with traditions and joy.
+      </p>
+      <button class="caption-button">View Gallery</button>
+    </div>
+  </div>
 </div>
 
-<a href="/">Back to Home Page</a>
+<!-- slider2 section -->
+<div class="slideshow-row">
+  <div class="zigzag-wrapper">
+    <div class="slideshow-container" id="container">
+      <div class="slider" id="slider2">
+        <div class="slide"><img th:src="@{/images/Picture23.jpg}" alt="1" /></div>
+        <div class="slide"><img th:src="@{/images/Picture24.jpg}" alt="2" /></div>
+      </div>
+    </div>
+
+    <div class="caption-area">
+      <div class="icon">📜</div>
+      <div class="caption-title">Workshop Organized</div>
+      <p class="caption-desc">
+The workshop offered practical learning opportunities with industry experts, providing students with the tools to succeed and innovate in their careers      </p>
+      <button class="caption-button">Explore Posters</button>
+    </div>
+  </div>
+</div>
+
+<!-- slider3 section -->
+<div class="slideshow-row">
+  <div class="zigzag-wrapper">
+    <div class="slideshow-container" id="container">
+      <div class="slider" id="slider3">
+        <div class="slide"><img th:src="@{/images/Picture13.jpg}" alt="1" /></div>
+        <div class="slide"><img th:src="@{/images/Picture25.jpg}" alt="2" /></div>
+      </div>
+    </div>
+
+    <div class="caption-area">
+      <div class="icon">🏆</div>
+      <div class="caption-title">Felicitation of Top Performing Students</div>
+      <p class="caption-desc">
+        Honoring the academic toppers and achievers who made the college proud through their excellence.
+      </p>
+      <button class="caption-button">See Awardees</button>
+    </div>
+  </div>
+</div>
+
+<!-- slider4 section -->
+<div class="slideshow-row">
+  <div class="zigzag-wrapper">
+    <div class="slideshow-container" id="container">
+      <div class="slider" id="slider4">
+        <div class="slide"><img th:src="@{/images/Picture33.jpg}" alt="1" /></div>
+        <div class="slide"><img th:src="@{/images/img4.jpg}" alt="2" /></div>
+      </div>
+    </div>
+
+    <div class="caption-area">
+      <div class="icon">🎓</div>
+      <div class="caption-title">Guest Lecture</div>
+      <p class="caption-desc">
+      Eminent experts from the industry and academia shared their invaluable insights with our students during the Guest Lecture series, enhancing their knowledge beyond the classroom.
+      </p>
+      <button class="caption-button">Graduation Highlights</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+  <div th:replace="~{footer::footer}"></div>
+
+  <script>
+    function createSlider(id, duration) {
+      const slider = document.getElementById(id);
+      const totalSlides = slider.children.length;
+      let index = 0;
+
+      function showSlide() {
+        index = (index + 1) % totalSlides;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      setInterval(showSlide, duration);
+    }
+
+    createSlider("slider1", 3000);
+    createSlider("slider2", 4000);
+    createSlider("slider3", 5000);
+    createSlider("slider4", 6000);
+    createSlider("slider12", 12000);
+  </script>
 
 </body>
 </html>

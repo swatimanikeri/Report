@@ -1,12 +1,34 @@
 package com.project.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import java.util.Base64;
-import java.util.Arrays;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 @Entity
+@Table(name = "value_added")
 public class ValueaddEntity {
 
     @Id
@@ -16,95 +38,43 @@ public class ValueaddEntity {
     private String noofparticipants;
     private String date;
 
-    @Lob
-    private byte[] image1;
+    private boolean isDeleted;
+    @Column(columnDefinition = "TEXT")
+	private String dynamicFieldsJson;
 
-    @Lob
-    private byte[] image2;
+    @Lob // Marks this field as a large object (BLOB)
+    private byte[] image1,image2; 
 
-    // Default constructor
-    public ValueaddEntity() {
-        super();
+  
+
+   
+    public String generateBase64Image1() {
+        return (image1 != null) ? Base64.getEncoder().encodeToString(image1) : "";
+    }
+  
+	public String generateBase64Image2() {
+        return (image1 != null) ? Base64.getEncoder().encodeToString(image2) : "";
     }
 
-    // Parameterized constructor
-    public ValueaddEntity(String name, String resourceperson, String noofparticipants, String date, byte[] image1, byte[] image2) {
-        this.name = name;
-        this.resourceperson = resourceperson;
-        this.noofparticipants = noofparticipants;
-        this.date = date;
-        this.image1 = image1;
-        this.image2 = image2;
+    
+   
+public Image getImage1AsAwt() {
+    try {
+        return ImageIO.read(new ByteArrayInputStream(image1));
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
 
-    // Getters and setters
-    public String getName() {
-        return name;
+public Image getImage2AsAwt() {
+    try {
+        return ImageIO.read(new ByteArrayInputStream(image2));
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getResourceperson() {
-        return resourceperson;
-    }
-
-    public void setResourceperson(String resourceperson) {
-        this.resourceperson = resourceperson;
-    }
-
-    public String getNoofparticipants() {
-        return noofparticipants;
-    }
-
-    public void setNoofparticipants(String noofparticipants) {
-        this.noofparticipants = noofparticipants;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public byte[] getImage1() {
-        return image1;
-    }
-
-    public void setImage1(byte[] image1) {
-        this.image1 = image1;
-    }
-
-    public byte[] getImage2() {
-        return image2;
-    }
-
-    public void setImage2(byte[] image2) {
-        this.image2 = image2;
-    }
-
-    // Methods to convert images to Base64 strings
-    public String getBase64Image1() {
-        if (this.image1 != null) {
-            return Base64.getEncoder().encodeToString(this.image1);
-        }
-        return "";
-    }
-
-    public String getBase64Image2() {
-        if (this.image2 != null) {
-            return Base64.getEncoder().encodeToString(this.image2);
-        }
-        return "";
-    }
-
-    @Override
-    public String toString() {
-        return "ValueaddEntity [name=" + name + ", resourceperson=" + resourceperson +
-               ", noofparticipants=" + noofparticipants + ", date=" + date +
-               ", image1=" + Arrays.toString(image1) + ", image2=" + Arrays.toString(image2) + "]";
-    }
 }

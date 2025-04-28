@@ -9,7 +9,7 @@
     <h2>Technical event data</h2>
     <table border="1">
         <thead>
-            <tr>
+            <tr  id="dynamicHeaderRow">
                 <th>Student Name</th>
                 <th>Event</th>
                 <th>Date</th>
@@ -24,13 +24,14 @@
         </thead>
         <tbody>
             <!-- Iterate over formDataList and display each entry -->
-            <tr th:each="rep : ${formDataList}">
+            <tr th:each="rep : ${formDataList}" th:attr="data-json=${rep.dynamicFieldsJson}"
+                class="data-row">
                 <td th:text="${rep.studentname}"></td>  <!-- Display the Activity Name -->
                 <td th:text="${rep.event}"></td>  <!-- Display the Date -->
                 <td th:text="${rep.date}"></td>  <!-- Display the Resource Person -->
                 <td th:text="${rep.organisedby}"></td>
                 <td th:text="${rep.status}"></td>  <!-- Display the Target Audience -->
-                
+                  <td class="dynamic-fields-placeholder" colspan="1"></td>
                 <td>
                     <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image1()}}" alt="image1" width="50%" height="50%">
                 </td>
@@ -47,7 +48,9 @@
                     </form>
                 </td>
             </tr>
+            
         </tbody>
     </table>
+    <script th:src="@{/js/script1.js}"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,11 +22,13 @@ public class SponsoredProjectCont {
 	@Autowired
     private  SponsoredProjectSer SponsoredProjectSer ;
 
-    // Display the form
 	@GetMapping("/SponsoredProject")
-    public String SponPage(Authentication authspon) {
-        return "SponsoredProject";
-    }
+	public String showSponsoredForm(Model model) {
+	    Map<String, String> dynamicFields = SponsoredProjectSer.loadDynamicFieldNamesOnly(); 
+	    model.addAttribute("dynamicJson", dynamicFields);
+	    return "SponsoredProject";
+	}
+
     // Handle form submission (text + image)
     @PostMapping("/saveSpon")
     public String submitForm(@RequestParam("rollno") Integer rollno,
@@ -33,13 +36,13 @@ public class SponsoredProjectCont {
 				            @RequestParam("guide") String guide,
 				            @RequestParam("projectnm") String projectnm,
 				            @RequestParam("companydetails") String companydetails,
-				            
+				            @RequestParam("dynamicFields") String dynamicFieldsJson,
 				            @RequestParam("image1") MultipartFile image1,
 				            @RequestParam("image2") MultipartFile image2) throws IOException 
     
       {
 				System.out.println(studentname);
-				SponsoredProjectSer.savelogic( rollno,studentname,guide,projectnm,companydetails,image1,image2);
+				SponsoredProjectSer.savelogic( rollno,studentname,guide,projectnm,companydetails,dynamicFieldsJson,image1,image2);
 				return "redirect:/SponsoredProject";
 				}
                              

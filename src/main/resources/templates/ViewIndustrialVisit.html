@@ -9,7 +9,7 @@
 <table border="1">
 
 <thead>
-<tr>
+<tr id="dynamicHeaderRow">
 <th>Industry Name</th>
 <th>Date</th>
 <th>Target Audience</th>
@@ -20,11 +20,13 @@
 </tr>
 </thead>
 <tbody>
-<tr th:each="rep:${formDataList}">
+<tr th:each="rep:${formDataList}"th:attr="data-json=${rep.dynamicFieldsJson}"
+                class="data-row">
 <td th:text="${rep.industrynm}"></td>
 <td th:text="${rep.date}"></td>
 <td th:text="${rep.audience}"></td>
 <td th:text="${rep.facultynm}"></td>
+ <td class="dynamic-fields-placeholder" colspan="1"></td>
 <td>
     <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image1()}}" alt="image1" width="100" height="100">
 </td>
@@ -42,5 +44,6 @@
 </tr>
 </tbody>
 </table>
+<script th:src="@{/js/script1.js}"></script>
 </body>
 </html>

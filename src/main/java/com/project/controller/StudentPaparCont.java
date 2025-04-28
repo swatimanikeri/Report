@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,7 +25,9 @@ public class StudentPaparCont {
 private StudentPaparSer StudentPaparSer ;                                                                                    
     
 @GetMapping("/StudentPapar")                                                                                                 
-public String IndPage(Authentication authind) {                                                                              
+public String showSponsoredForm(Model model) {
+    Map<String, String> dynamicFields = StudentPaparSer.loadDynamicFieldNamesOnly(); // use your bean here
+    model.addAttribute("dynamicJson", dynamicFields);                                                                        
 return "StudentPapar";                                                                                                   
 }                                                                                                                            
     
@@ -36,12 +39,12 @@ public String submitForm(
 @RequestParam("studentname") String studentname,  
 @RequestParam("topic") String topic,  
 @RequestParam("paperdetails") String paperdetails,  
-
+@RequestParam("dynamicFields") String dynamicFieldsJson,
 @RequestParam("image1") MultipartFile image1,                                                       
 @RequestParam("image2") MultipartFile image2)throws IOException                                    
 {                                                                                                                            
 System.out.println(topic);                                                                                               
-StudentPaparSer.savelogic(groupno, rollno, studentname,topic,paperdetails, image1,image2);                                        
+StudentPaparSer.savelogic(groupno, rollno, studentname,topic,paperdetails, dynamicFieldsJson,image1,image2);                                        
 return "redirect:/StudentPapar";                                                                                         
 }                                                                                                                            
 @GetMapping("/ViewStudentPapar")                                                                    
@@ -51,7 +54,7 @@ model.addAttribute("formDataList", formDataList);
 return "ViewStudentPapar";                                                                      
     
 }                                                                                                   
-@PostMapping("/studentpapar/delete/{sr_no}")                                                        
+@PostMapping("/student/delete/{sr_no}")                                                        
 public String deleteEntry(@PathVariable int sr_no) {                                                
 StudentPaparSer.deleteById(sr_no);                                                              
 return "redirect:/ViewStudentPapar"; // Redirect to the display page                           

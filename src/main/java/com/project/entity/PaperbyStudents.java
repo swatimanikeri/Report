@@ -1,16 +1,33 @@
 package com.project.entity;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 @Entity
+
 public class PaperbyStudents {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
@@ -20,35 +37,10 @@ public class PaperbyStudents {
 	private String studentname;
 	private String topic;
 	private String paperdetails;
+	@Column(columnDefinition = "TEXT")
+	private String dynamicFieldsJson;
 	
-	 public PaperbyStudents(Integer sr_No, Integer groupno, Integer rollno, String studentname, String topic,
-			String paperdetails, byte[] image1, byte[] image2) {
-		super();
-		this.sr_No = sr_No;
-		this.groupno = groupno;
-		this.rollno = rollno;
-		this.studentname = studentname;
-		this.topic = topic;
-		this.paperdetails = paperdetails;
-		this.image1 = image1;
-		this.image2 = image2;
-	}
-
-	public byte[] getImage1() {
-		return image1;
-	}
-
-	public void setImage1(byte[] image1) {
-		this.image1 = image1;
-	}
-
-	public byte[] getImage2() {
-		return image2;
-	}
-
-	public void setImage2(byte[] image2) {
-		this.image2 = image2;
-	}
+	
 	@Lob
 	    private byte[] image1, image2;
 
@@ -63,68 +55,23 @@ public class PaperbyStudents {
 	        return Base64.encodeBase64String(image2);
 	    }
 	    
-	    
-	public Integer getSr_No() {
-		return sr_No;
-	}
-	public void setSr_No(Integer sr_No) {
-		this.sr_No = sr_No;
-	}
-	public Integer getGroupno() {
-		return groupno;
-	}
-	public void setGroupno(Integer groupno) {
-		this.groupno = groupno;
-	}
-	public Integer getRollno() {
-		return rollno;
-	}
-	public void setRollno(Integer rollno) {
-		this.rollno = rollno;
-	}
-	public String getStudentname() {
-		return studentname;
-	}
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
-	}
-	public String getTopic() {
-		return topic;
-	}
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-	public String getPaperdetails() {
-		return paperdetails;
-	}
-	public void setPaperdetails(String paperdetails) {
-		this.paperdetails = paperdetails;
-	}
-	@Override
-	public String toString() {
-		return "PaperbyStudents [sr_No=" + sr_No + ", groupno=" + groupno + ", rollno=" + rollno + ", studentname="
-				+ studentname + ", topic=" + topic + ", paperdetails=" + paperdetails + ", image1="
-				+ Arrays.toString(image1) + ", image2=" + Arrays.toString(image2) + ", getImage1()="
-				+ Arrays.toString(getImage1()) + ", getImage2()=" + Arrays.toString(getImage2())
-				+ ", generateBase64Image1()=" + generateBase64Image1() + ", generateBase64Image2()="
-				+ generateBase64Image2() + ", getSr_No()=" + getSr_No() + ", getGroupno()=" + getGroupno()
-				+ ", getRollno()=" + getRollno() + ", getStudentname()=" + getStudentname() + ", getTopic()="
-				+ getTopic() + ", getPaperdetails()=" + getPaperdetails() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
-	public PaperbyStudents(Integer sr_No, Integer groupno, Integer rollno, String studentname, String topic,
-			String paperdetails) {
-		super();
-		this.sr_No = sr_No;
-		this.groupno = groupno;
-		this.rollno = rollno;
-		this.studentname = studentname;
-		this.topic = topic;
-		this.paperdetails = paperdetails;
-	}
-	public PaperbyStudents() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	    public Image getImage1AsAwt() {
+	        try {
+	            return ImageIO.read(new ByteArrayInputStream(image1));
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+
+	    public Image getImage2AsAwt() {
+	        try {
+	            return ImageIO.read(new ByteArrayInputStream(image2));
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    } 
+
 	
 }

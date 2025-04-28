@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,9 +24,12 @@ public class TechnicalEventCont {
     private TechnicalEventService technicalEventService; // ✅ Fixed variable name
 
     @GetMapping("/TechnicalEvent")
-    public String TechPage(Authentication authtech) {
+    public String showSponsoredForm(Model model) {
+        Map<String, String> dynamicFields = technicalEventService.loadDynamicFieldNamesOnly(); 
+        model.addAttribute("dynamicJson", dynamicFields);
         return "TechnicalEvent";
     }
+
 
     @PostMapping("/saveTech")
     public String submitForm(
@@ -34,10 +38,11 @@ public class TechnicalEventCont {
         @RequestParam("date") String date,
         @RequestParam("organisedby") String organisedby,
         @RequestParam("status") String status,
+        @RequestParam("dynamicFields") String dynamicFieldsJson,
         @RequestParam("image1") MultipartFile image1,@RequestParam("image2") MultipartFile image2) throws IOException 
     {
         System.out.println(date);
-        technicalEventService.savelogic(studentname, event, date, organisedby, status, image1,image2); // ✅ Call instance method
+        technicalEventService.savelogic(studentname, event, date, organisedby, status, dynamicFieldsJson,image1,image2); // ✅ Call instance method
         return "redirect:/TechnicalEvent";
     }
     

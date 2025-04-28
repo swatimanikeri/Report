@@ -1,17 +1,87 @@
 <!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
-<jasperReport name="mainreport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="feb7772e-f64a-4386-bbb9-3785cbb72122">
+<jasperReport name="mainreport" language="java" columnCount="1" pageWidth="595" pageHeight="841" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="feb7772e-f64a-4386-bbb9-3785cbb72122">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="compesaReport" class="net.sf.jasperreports.engine.JasperReport"/>
-	<parameter name="compesaMap" class="java.util.Map"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="compesaReport" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[$P{compesaReport}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="compesaMap" class="java.util.Map">
+		<defaultValueExpression><![CDATA[$P{compesaMap}]]></defaultValueExpression>
+	</parameter>
 	<parameter name="SUBREPORT_DATASOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="expReport" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[$P{expReport}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="expMap" class="java.util.Map">
+		<defaultValueExpression><![CDATA[$P{expMap}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="alumniReport" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[$P{alumniReport}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="alumniMap" class="java.util.Map">
+		<defaultValueExpression><![CDATA[$P{alumniMap}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fapaMap" class="java.util.Map">
+		<defaultValueExpression><![CDATA[$P{fapaMap}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fapaReport" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[$P{fapaReport}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sopoReport" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[$P{sopoReport}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sopoMap" class="java.util.Map"/>
 	<query language="sql"><![CDATA[]]></query>
-	<background splitType="Stretch"/>
-	<title height="79" splitType="Stretch"/>
+	<title height="100">
+		<element kind="frame" uuid="92c6e74f-8070-4599-a9f3-613536fd00c2" mode="Opaque" x="-20" y="-12" width="595" height="112" backcolor="#006699">
+			<element kind="staticText" uuid="04987f49-cc1f-450d-8135-9c6134e6d704" x="70" y="5" width="518" height="95" forecolor="#FFFFFF" fontSize="20.0" bold="true" hTextAlign="Center">
+				<text><![CDATA[Dr. J.J. Magdum Trust’s (No. E/902)
+Dr. J.J. Magdum College of Engineering, Jaysingpur 
+ Department of Computer Science & Engineering 
+				]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="image" uuid="795f529e-fd29-4704-afb4-5104f93311be" x="10" y="20" width="61" height="62">
+				<expression><![CDATA["C:/Users/shrey/OneDrive/Pictures/jjmcoe.png"]]></expression>
+			</element>
+		</element>
+	</title>
 	<detail>
-		<band height="619" splitType="Stretch">
-			<element kind="subreport" uuid="042c18fb-a271-487e-9995-734c1ec2568f" x="0" y="0" width="530" height="619">
+		<band height="500" splitType="Stretch">
+			<element kind="staticText" uuid="a7314d5c-0ff3-4bfb-8365-ff5258635807" x="0" y="130" width="568" height="100" fontSize="14.0">
+				<text><![CDATA[Associate Professor:-02
+Asst. Professor: - 08
+Technical Asst:- 02
+Peon:-01
+ ]]></text>
+			</element>
+			<element kind="staticText" uuid="db951d0b-7c17-4be7-a62b-e172f1ee6b94" x="0" y="300" width="568" height="140" fontSize="14.0">
+				<text><![CDATA[1) Dr.Mrs.D.A.Nikam received Nation Builder Award -                                                                                                 Outstanding Teacher Award for year 23-24 from Rotary Club of Ichalkaranji Executive on 9th September 2023.
+2)Dr.Mrs.D.A.Nikam Worked as Editor to publish 11th WCSEM Conference article with ISBN 978-93-95470-52-0 June2023.
+3) Dr. D. A. Nikam has filed a patent application for WAVE ENERGY GENERATING MACHINE & CUSTOMER EXPERIENCE MONITORING DEVICE
+]]></text>
+			</element>
+			<element kind="staticText" uuid="ee45235a-2eb1-47b5-8b94-1b97ee9b7419" x="0" y="70" width="160" height="30" fontSize="16.0">
+				<text><![CDATA[❖Faculty & Staff Details]]></text>
+			</element>
+			<element kind="staticText" uuid="55a9bd19-55ed-48f0-8b2a-7d513170f21e" x="0" y="235" width="260" height="30" fontSize="16.0">
+				<text><![CDATA[❖Departmental Achievements]]></text>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+		<band height="500" splitType="Stretch">
+			<element kind="subreport" uuid="4b6ba12d-1f68-4b7b-afc1-bfd082420df1" x="0" y="140" width="535" height="350">
 				<parametersMapExpression><![CDATA[$P{compesaMap}]]></parametersMapExpression>
 				<expression><![CDATA[$P{compesaReport}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<parameter name="compesaReport">
 					<expression><![CDATA[$P{compesaReport}]]></expression>
 				</parameter>
@@ -19,6 +89,67 @@
 					<expression><![CDATA[$P{compesaMap}]]></expression>
 				</parameter>
 			</element>
+			<element kind="break" uuid="02672bd1-eaa5-482c-b146-b113a06ca178" x="0" y="60" width="569" height="1"/>
+		</band>
+		<band height="500" splitType="Stretch">
+			<element kind="subreport" uuid="ab114934-6d14-42d2-908a-3c0f14c8c8ef" x="0" y="105" width="535" height="350">
+				<parametersMapExpression><![CDATA[$P{expMap}]]></parametersMapExpression>
+				<expression><![CDATA[$P{expReport}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<parameter name="expReport">
+					<expression><![CDATA[$P{expReport}]]></expression>
+				</parameter>
+				<parameter name="expMap">
+					<expression><![CDATA[$P{expMap}]]></expression>
+				</parameter>
+			</element>
+			<element kind="break" uuid="02672bd1-eaa5-482c-b146-b113a06ca178" x="0" y="60" width="569" height="1"/>
+		</band>
+		<band height="500" splitType="Stretch">
+			<element kind="subreport" uuid="ab114934-6d14-42d2-908a-3c0f14c8c8ef" x="0" y="105" width="535" height="350">
+				<parametersMapExpression><![CDATA[$P{alumniMap}]]></parametersMapExpression>
+				<expression><![CDATA[$P{alumniReport}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<parameter name="alumniReport">
+					<expression><![CDATA[$P{alumniReport}]]></expression>
+				</parameter>
+				<parameter name="alumniMap">
+					<expression><![CDATA[$P{alumniMap}]]></expression>
+				</parameter>
+			</element>
+			<element kind="break" uuid="02672bd1-eaa5-482c-b146-b113a06ca178" x="0" y="60" width="569" height="1"/>
+		</band>
+		<band height="500" splitType="Stretch">
+			<element kind="subreport" uuid="ab114934-6d14-42d2-908a-3c0f14c8c8ef" x="0" y="105" width="535" height="350">
+				<parametersMapExpression><![CDATA[$P{fapaMap}]]></parametersMapExpression>
+				<expression><![CDATA[$P{fapaReport}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<parameter name="fapaReport">
+					<expression><![CDATA[$P{fapaReport}]]></expression>
+				</parameter>
+				<parameter name="fapaMap">
+					<expression><![CDATA[$P{fapaMap}]]></expression>
+				</parameter>
+			</element>
+			<element kind="break" uuid="02672bd1-eaa5-482c-b146-b113a06ca178" x="0" y="60" width="569" height="1"/>
+		</band>
+		<band height="500" splitType="Stretch">
+			<element kind="subreport" uuid="ab114934-6d14-42d2-908a-3c0f14c8c8ef" x="0" y="105" width="535" height="350">
+				<parametersMapExpression><![CDATA[$P{sopoMap}]]></parametersMapExpression>
+				<expression><![CDATA[$P{sopoReport}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<parameter name="sopoReport">
+					<expression><![CDATA[$P{sopoReport}]]></expression>
+				</parameter>
+				<parameter name="sopoMap">
+					<expression><![CDATA[$P{sopoMap}]]></expression>
+				</parameter>
+			</element>
+			<element kind="break" uuid="02672bd1-eaa5-482c-b146-b113a06ca178" x="0" y="60" width="569" height="1"/>
 		</band>
 	</detail>
 </jasperReport>

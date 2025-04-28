@@ -1,7 +1,9 @@
 package com.project.entity;
 
 import java.awt.Image;
+
 import java.util.Arrays;
+import java.util.Date;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
@@ -12,20 +14,39 @@ import jakarta.persistence.GeneratedValue;
 
 import jakarta.persistence.GenerationType;
 import java.io.ByteArrayInputStream;
+import java.time.LocalDate;
+
 import javax.imageio.ImageIO;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 @Entity
+
+@Table(name = "compesa_csi") 
 public class CompesaCsi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
-	private String dates;
+	private Date date;
 	private String activities;
-	
+	@Column(columnDefinition = "TEXT")
+	private String dynamicFieldsJson;
+
 	@Lob
 	private byte[] image1,image2;
 	
@@ -55,68 +76,6 @@ public class CompesaCsi {
 	        e.printStackTrace();
 	        return null;
 	    }
-	}
-	
-	public byte[] getImage2() {
-		return image2;
-	}
-
-	public void setImage2(byte[] image2) {
-		this.image2 = image2;
-	}
-
-	public byte[] getImage1() {
-		return image1;
-	}
-
-
-	public void setImage1(byte[] image1) {
-		this.image1 = image1;
-	}
-	
-	public CompesaCsi() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public CompesaCsi(Integer id, String dates, String activities, byte[] image1, byte[] image2) {
-		super();
-		this.id = id;
-		this.dates = dates;
-		this.activities = activities;
-		this.image1 = image1;
-		this.image2 = image2;
-	}
-
-	@Override
-	public String toString() {
-		return "CompesaCsi [id=" + id + ", dates=" + dates + ", activities=" + activities + ", image1="
-				+ Arrays.toString(image1) + ", image2=" + Arrays.toString(image2) + ", generateBase64Image1()="
-				+ generateBase64Image1() + ", generateBase64Image2()=" + generateBase64Image2() + ", getImage2()="
-				+ Arrays.toString(getImage2()) + ", getImage1()=" + Arrays.toString(getImage1()) + ", getId()="
-				+ getId() + ", getDates()=" + getDates() + ", getActivities()=" + getActivities() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDates() {
-		return dates;
-	}
-	public void setDates(String dates) {
-		this.dates = dates;
-	}
-	public String getActivities() {
-		return activities;
-	}
-	public void setActivities(String activities) {
-		this.activities = activities;
 	}
 	
 	

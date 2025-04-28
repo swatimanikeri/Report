@@ -9,7 +9,7 @@
     <h2>Community Service Activities</h2>
     <table border="1">
         <thead>
-            <tr>
+            <tr id="dynamicHeaderRow">
                 <th>Activity Name</th>
                 <th>Date</th>
                 <th>Resource Person</th>
@@ -21,12 +21,14 @@
         </thead>
         <tbody>
             <!-- Iterate over formDataList and display each entry -->
-            <tr th:each="rep : ${formDataList}">
+            <tr th:each="rep : ${formDataList}" th:attr="data-json=${rep.dynamicFieldsJson}"
+                class="data-row">
+                
                 <td th:text="${rep.activity}"></td>  <!-- Display the Activity Name -->
                 <td th:text="${rep.date}"></td>  <!-- Display the Date -->
                 <td th:text="${rep.resourceperson}"></td>  <!-- Display the Resource Person -->
                 <td th:text="${rep.audience}"></td>  <!-- Display the Target Audience -->
-                
+                 <td class="dynamic-fields-placeholder" colspan="1"></td>
                 <td>
                     <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image1()}}" alt="image1" width="50%" height="50%">
                 </td>
@@ -44,5 +46,6 @@
             </tr>
         </tbody>
     </table>
+     <script th:src="@{/js/script1.js}"></script>
 </body>
 </html>

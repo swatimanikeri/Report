@@ -1,16 +1,39 @@
 package com.project.entity;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+import java.util.Date;
+
+import javax.imageio.ImageIO;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
 @Entity
+
 @Table(name = "sponsored_project") // Optional: if you want to set a custom table name
 public class SponsoredProjectEntity {
     
@@ -20,11 +43,21 @@ public class SponsoredProjectEntity {
     
     private Integer rollno;
     private String studentname;
+    private String facultyname;
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(updatable = false)
+    private Date date;
     private String guide;
     private String projectnm;
     private String companydetails;
+	@Column(columnDefinition = "TEXT")
+	private String dynamicFieldsJson;
+
     
-    @Lob
+ 
+
+	@Lob
     private byte[] image1, image2;
 
     // Methods to convert images to Base64
@@ -38,97 +71,21 @@ public class SponsoredProjectEntity {
         return Base64.encodeBase64String(image2);
     }
 
-    // Getters and Setters
-    public Integer getSr_No() {
-        return sr_No;
+    public Image getImage1AsAwt() {
+        try {
+            return ImageIO.read(new ByteArrayInputStream(image1));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public void setSr_No(Integer sr_No) {
-        this.sr_No = sr_No;
-    }
-
-    public Integer getRollno() {
-        return rollno;
-    }
-
-    public void setRollno(Integer rollno) {
-        this.rollno = rollno;
-    }
-
-    public String getStudentname() {
-        return studentname;
-    }
-
-    public void setStudentname(String studentname) {
-        this.studentname = studentname;
-    }
-
-    public String getGuide() {
-        return guide;
-    }
-
-    public void setGuide(String guide) {
-        this.guide = guide;
-    }
-
-    public String getProjectnm() {
-        return projectnm;
-    }
-
-    public void setProjectnm(String projectnm) {
-        this.projectnm = projectnm;
-    }
-
-    public String getCompanydetails() {
-        return companydetails;
-    }
-
-    public void setCompanydetails(String companydetails) {
-        this.companydetails = companydetails;
-    }
-
-    public byte[] getImage1() {
-        return image1;
-    }
-
-    public void setImage1(byte[] image1) {
-        this.image1 = image1;
-    }
-
-    public byte[] getImage2() {
-        return image2;
-    }
-
-    public void setImage2(byte[] image2) {
-        this.image2 = image2;
-    }
-
-    @Override
-	public String toString() {
-		return "SponsoredProjectEntity [sr_No=" + sr_No + ", rollno=" + rollno + ", studentname=" + studentname
-				+ ", guide=" + guide + ", projectnm=" + projectnm + ", companydetails=" + companydetails + ", image1="
-				+ Arrays.toString(image1) + ", image2=" + Arrays.toString(image2) + ", generateBase64Image1()="
-				+ generateBase64Image1() + ", generateBase64Image2()=" + generateBase64Image2() + ", getSr_No()="
-				+ getSr_No() + ", getRollno()=" + getRollno() + ", getStudentname()=" + getStudentname()
-				+ ", getGuide()=" + getGuide() + ", getProjectnm()=" + getProjectnm() + ", getCompanydetails()="
-				+ getCompanydetails() + ", getImage1()=" + Arrays.toString(getImage1()) + ", getImage2()="
-				+ Arrays.toString(getImage2()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
-	}
-
-    // Constructors
-    public SponsoredProjectEntity(Integer sr_No, Integer rollno, String studentname, String guide, String projectnm,
-                                  String companydetails) {
-        super();
-        this.sr_No = sr_No;
-        this.rollno = rollno;
-        this.studentname = studentname;
-        this.guide = guide;
-        this.projectnm = projectnm;
-        this.companydetails = companydetails;
-    }
-
-    public SponsoredProjectEntity() {
-        super();
+    public Image getImage2AsAwt() {
+        try {
+            return ImageIO.read(new ByteArrayInputStream(image2));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

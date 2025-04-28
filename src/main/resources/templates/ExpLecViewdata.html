@@ -1,40 +1,54 @@
-                                                                                             <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Expert Lecture Data</title>
-      
+    <link rel="stylesheet" th:href="@{/css/fetchdata.css}">
 </head>
 <body>
+<div th:replace="~{navbar::navbar}"></div>
     <h2>Expert Lecture</h2>
     <table border="1">
         <thead>
-            <tr>
+            <tr id="dynamicHeaderRow">
                 <th>Topic Name</th>
                 <th>Date</th>
                 <th>Resource Person</th>
-                <th>audience</th>
+                <th>Audience</th>
+                <!-- Dynamic fields can be appended via JS -->
                 <th>Image1</th>
                 <th>Image2</th>
-               
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Iterate over formDataList and display each entry -->
-            <tr th:each="rep : ${formData}">
-               <td th:text="${rep.TopicName}"></td>  <!-- Display the Activity Name -->
-                <td th:text="${rep.DateConducted}"></td>  <!-- Display the Date -->
-                <td th:text="${rep.resourceperson}"></td>  <!-- Display the Resource Person -->
-                <td th:text="${rep.audience}"></td>  <!-- Display the Target Audience -->
+            <tr th:each="rep : ${formDataList}" th:attr="data-json=${rep.dynamicFieldsJson}" class="data-row">
+                <td th:text="${rep.topicname}"></td>
+                <td th:text="${rep.date}"></td>
+                <td th:text="${rep.resourceperson}"></td>
+                <td th:text="${rep.audience}"></td>
+
+                <!-- This cell will be replaced with dynamic fields via JS -->
+                <td class="dynamic-fields-placeholder"></td>
+
                 <td>
-                    <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image1()}}" alt="image1" width="50%" height="50%">
+                    <img th:src="@{'data:image/jpeg;base64,' + ${rep.generateBase64Image1()}}" alt="image1" width="50%" height="50%">
                 </td>
                 <td>
-                    <img th:src="@{'data:image/jpeg;base64,'+${rep.generateBase64Image2()}}" alt="image2" width="50%" height="50%">
+                    <img th:src="@{'data:image/jpeg;base64,' + ${rep.generateBase64Image2()}}" alt="image2" width="50%" height="50%">
                 </td>
-                
+                <td>
+                    <form th:action="@{/expert/delete/{id}(id=${rep."srno")}" method="post">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this record?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
+
+    <script th:src="@{/js/script1.js}"></script>
 </body>
 </html>

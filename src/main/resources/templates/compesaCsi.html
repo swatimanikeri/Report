@@ -7,14 +7,31 @@
     <link rel="stylesheet" th:href="@{/css/Community.css}">
 </head>
 <body>
-<div th:replace="~{base::parent(~{::p})}">
-        <p></p>
-    </div>
+ <div th:replace="~{navbar::navbar}"></div>
     <h3>COMPESA & CST</h3>
     <form action="saveComp" method="POST" enctype="multipart/form-data">
         
-         <b><label>Date:<input type ='date' id ='dates' name ='dates'placeholder='Date' required></label><br><br><br></b>
+         <b><label>Date:<input type ='date' id ='date' name ='date'placeholder='Date' required></label><br><br><br></b>
         <b><label>Activity:<input type ='text' id ='activities' name ='activities'placeholder='Name' required></label><br><br><br></b>
+      <div id="extraDynamicFields"></div>
+        
+       <div id="staticFieldContainer">
+        <!-- Render dynamic fields saved previously -->
+        <div th:if="${dynamicJson != null}" th:each="entry : ${dynamicJson}">
+        <label th:text="${entry.key + ':'}"></label>
+        <input type="text"
+               th:name="'dynamicFields[' + ${entry.key} + ']'" 
+               th:value="${entry.value}" />
+       </div>
+    </div>
+
+        
+        <div id="dynamicFieldsContainer"></div>
+        <input type="hidden" name="dynamicFields" id="dynamicFields">
+        <button type="button" onclick="addDynamicField()">Add Field</button><br><br>
+      
+      
+      
        <label for="image1">Image:</label>
         <input type="file" id="image1" name="image1" required><br><br>
          <label for="image2">Image:</label>
@@ -24,5 +41,12 @@
          <a href="/viewCompesa" class="swati">
             <button>fetch data</button>
         </a>
+        <!-- Logout Button (Using POST for CSRF protection) -->
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout_button">Logout</button>
+        </form>
+        <script th:src="@{/js/script.js}"></script>
+     
 </body>
+<div th:replace="~{footer::footer}"></div>
 </html>

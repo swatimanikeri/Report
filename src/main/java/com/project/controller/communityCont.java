@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,8 +28,9 @@ public class communityCont {
     private CommunityServicesSer communityServicesSer;
 
     @GetMapping("/Community")
-    public String CommuPage(Authentication authcomm) {
-        return "Community";
+    public void showSponsoredForm(Model model) {
+	    Map<String, String> dynamicFields = communityServicesSer.loadDynamicFieldNamesOnly(); // use your bean here
+	    model.addAttribute("dynamicJson", dynamicFields);
     }
 
     @PostMapping("/saveComm")
@@ -37,10 +39,11 @@ public class communityCont {
         @RequestParam("date") String date,                     
         @RequestParam("resourseperson") String resourseperson,
         @RequestParam("audience") String audience,
+        @RequestParam("dynamicFields") String dynamicFieldsJson,
         @RequestParam("image1") MultipartFile image1,@RequestParam("image2") MultipartFile image2) throws IOException 
     {
         System.out.println(date);
-        communityServicesSer.savelogic(activity, date, resourseperson, audience, image1,image2); // ✅ Correct Service method call
+        communityServicesSer.savelogic(activity, date, resourseperson, audience, dynamicFieldsJson,image1,image2); // ✅ Correct Service method call
         return "redirect:/Community";
     }
     

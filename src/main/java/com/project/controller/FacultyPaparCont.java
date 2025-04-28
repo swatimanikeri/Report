@@ -2,6 +2,7 @@ package com.project.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,9 @@ public class FacultyPaparCont {
     private FacultyPaparSer FacultyPaparSer ;
 
     @GetMapping("/FacultyPapar")
-    public String IndPage(Authentication authind) {
+    public String showSponsoredForm(Model model) {
+	    Map<String, String> dynamicFields = FacultyPaparSer.loadDynamicFieldNamesOnly(); // use your bean here
+	    model.addAttribute("dynamicJson", dynamicFields);
         return "FacultyPapar";
     }
 
@@ -35,11 +38,12 @@ public class FacultyPaparCont {
                               @RequestParam("facultyname") String facultyname,
                               @RequestParam("topic") String topic,                     
                               @RequestParam("publicationdetails") String publicationdetails,
+                              @RequestParam("dynamicFields") String dynamicFieldsJson,
                              @RequestParam("image1") MultipartFile image1,
                               @RequestParam("image2") MultipartFile image2)throws IOException
     {
         System.out.println(topic);
-        FacultyPaparSer.savelogic(facultyname, topic, publicationdetails, image1,image2);
+        FacultyPaparSer.savelogic(facultyname, topic, publicationdetails, dynamicFieldsJson,image1,image2);
         return "redirect:/FacultyPapar";
     }
                              @GetMapping("/ViewFacultyPapar")
@@ -49,9 +53,9 @@ public class FacultyPaparCont {
                                  return "ViewFacultyPapar";
                              
                              }
-                             @PostMapping("/facultypapar/delete/{sr_no}")
-                             public String deleteEntry(@PathVariable int sr_no) {
-                            	 FacultyPaparSer.deleteById(sr_no);
+                             @PostMapping("/faculty/delete/{sr_No}")
+                             public String deleteEntry(@PathVariable int sr_No) {
+                            	 FacultyPaparSer.deleteById(sr_No);
                                  return "redirect:/ViewIFacultyPapar"; // Redirect to the display page
                              }
 	

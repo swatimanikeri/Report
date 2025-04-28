@@ -2,7 +2,9 @@ package com.project.controller;
 
 import java.io.IOException;
 
+
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,7 +27,9 @@ public class IndustrialVisitCont {
     private IndustrialVisitService industrialVisitService;
 
     @GetMapping("/IndustrialVisit")
-    public String IndPage(Authentication authind) {
+    public String showSponsoredForm(Model model) {
+	    Map<String, String> dynamicFields = industrialVisitService.loadDynamicFieldNamesOnly(); // use your bean here
+	    model.addAttribute("dynamicJson", dynamicFields);
         return "IndustrialVisit";
     }
 
@@ -36,11 +40,12 @@ public class IndustrialVisitCont {
                               @RequestParam("date") String date,                     
                               @RequestParam("audience") String audience,
                               @RequestParam("facultynm") String facultynm,
+                              @RequestParam("dynamicFields") String dynamicFieldsJson,
                               @RequestParam("imageData") MultipartFile imageData,
                               @RequestParam("image2") MultipartFile image2)throws IOException
     {
         System.out.println(date);
-        industrialVisitService.savelogic(industrynm, date, audience, facultynm,imageData,image2);
+        industrialVisitService.savelogic(industrynm, date, audience, facultynm,dynamicFieldsJson,imageData,image2);
         return "redirect:/IndustrialVisit";
     }
                              @GetMapping("/ViewIndustrialVisit")
